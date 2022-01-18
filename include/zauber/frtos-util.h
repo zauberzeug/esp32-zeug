@@ -2,6 +2,7 @@
 #define ZZ_FRTOS_UTIL_H
 
 #include <array>
+#include <cassert>
 #include <cstring>
 #include <functional>
 #include <string_view>
@@ -43,7 +44,7 @@ class Task {
     Core::Id m_coreId;
     Entrypoint m_entrypoint;
 
-    TaskHandle_t m_task;
+    TaskHandle_t m_task{nullptr};
 
     /* FreeRTOS internal */
     StaticTask_t m_taskBuffer;
@@ -75,6 +76,7 @@ public:
     }
 
     auto run() -> void {
+        assert(m_task == nullptr);
         m_task = xTaskCreateStaticPinnedToCore(nativeFunction,
                                                m_name.c_str(),
                                                StackSize,
@@ -83,6 +85,15 @@ public:
                                                m_stack,
                                                &m_taskBuffer,
                                                m_coreId);
+    }
+
+    auto halt() -> void {
+        assert(m_task != nullptr);
+        vTaskDelete(m_task);
+    }
+
+    static auto haltCurrent() -> void {
+        vTaskDelete(nullptr);
     }
 
     static auto delayMiliSeconds(TickType_t ms) -> void {
