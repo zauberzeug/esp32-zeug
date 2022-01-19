@@ -39,7 +39,7 @@ class Task {
     using Entrypoint = std::function<void()>;
     static const UBaseType_t DEFAULT_PRIORITY{5};
 
-    ZZ::Util::FixString<16> m_name;
+    ZZ::Util::TextBuffer<16> m_name;
     TickType_t m_loopDelay;
     Core::Id m_coreId;
     Entrypoint m_entrypoint;
@@ -54,7 +54,7 @@ class Task {
         auto &self{*static_cast<Task *>(data)};
         auto id{xPortGetCoreID()};
 
-        ESP_LOGI("Task", "[%s] executing on core [%s]", self.m_name.c_str(), Core::idToStr(id));
+        ESP_LOGI("Task", "[%.*s] executing on core [%s]", self.m_name.len(), self.m_name.ptr(), Core::idToStr(id));
 
         while (true) {
             self.m_entrypoint();
@@ -82,7 +82,7 @@ public:
     auto run() -> void {
         assert(m_task == nullptr);
         m_task = xTaskCreateStaticPinnedToCore(nativeFunction,
-                                               m_name.c_str(),
+                                               m_name.ptr(),
                                                StackSize,
                                                this,
                                                DEFAULT_PRIORITY,

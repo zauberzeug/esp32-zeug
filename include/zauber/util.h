@@ -11,38 +11,23 @@
 
 namespace ZZ::Util {
 
-template <size_t maxLen>
-class FixString {
-    std::array<char, maxLen> chars;
-    std::size_t length{0};
-
-public:
-    FixString(const std::string_view &sv) {
-        std::size_t cpyCount = std::min(sv.size(), maxLen - 1);
-        std::memcpy(&chars[0], sv.data(), cpyCount);
-        chars[cpyCount] = '\0';
-
-        length = cpyCount;
-    }
-
-    auto view() const -> std::string_view {
-        return std::string_view{chars.data(), length};
-    }
-
-    auto c_str() const -> const char * {
-        return chars.data();
-    }
-};
-
 template <std::size_t Size>
 class TextBuffer {
     std::array<char, Size> m_buf;
     std::size_t m_len;
 
 public:
-    TextBuffer() : m_len{0} {
+    constexpr TextBuffer() : m_len{0} {
         static_assert(Size >= 1, "TextBuffer must have space for null terminator");
         m_buf[0] = '\0';
+    }
+
+    constexpr TextBuffer(const std::string_view &sv) {
+        std::size_t cpyCount = std::min(sv.size(), Size - 1);
+        std::memcpy(m_buf.data(), sv.data(), cpyCount);
+        m_buf[cpyCount] = '\0';
+
+        m_len = cpyCount;
     }
 
     auto ptr() const -> const char * {
