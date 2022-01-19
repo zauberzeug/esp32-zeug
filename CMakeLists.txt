@@ -5,6 +5,8 @@ idf_component_register(
         "include/zauber/eventhandler.h"
         "include/zauber/frtos-util.h"
         "include/zauber/util.h"
+        "include/zauber/ble/uuid.h"
+        "include/zauber/ble/gatts.h"
     INCLUDE_DIRS
         "include"
     REQUIRES
