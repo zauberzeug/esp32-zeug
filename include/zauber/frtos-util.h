@@ -71,6 +71,10 @@ public:
         : m_name{name}, m_loopDelay{loopDelayMs}, m_coreId{Core::Any}, m_entrypoint{entrypoint} {
     }
 
+    Task(const std::string_view &name, Core::Id coreId, Entrypoint entrypoint)
+        : m_name{name}, m_loopDelay{0}, m_coreId{coreId}, m_entrypoint{entrypoint} {
+    }
+
     Task(const std::string_view &name, TickType_t loopDelayMs, Core::Id coreId, Entrypoint entrypoint)
         : m_name{name}, m_loopDelay{loopDelayMs}, m_coreId{coreId}, m_entrypoint{entrypoint} {
     }
