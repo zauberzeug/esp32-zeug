@@ -19,9 +19,26 @@ namespace ZZ::Ble::Gatts {
 struct Characteristic {
     using Callback = std::function<int(std::uint16_t, std::uint16_t, ble_gatt_access_ctxt *)>;
 
-    ble_uuid128_t m_uuid;
+    ble_uuid_any_t m_uuid;
     ble_gatt_chr_flags m_flags;
     Callback m_callback;
+
+    Characteristic() : m_flags{0}, m_callback{} {}
+
+    Characteristic(const ble_uuid16_t &uuid, ble_gatt_chr_flags flags, Callback callback)
+        : m_flags{flags}, m_callback{callback} {
+        m_uuid.u16 = uuid;
+    }
+
+    Characteristic(const ble_uuid32_t &uuid, ble_gatt_chr_flags flags, Callback callback)
+        : m_flags{flags}, m_callback{callback} {
+        m_uuid.u32 = uuid;
+    }
+
+    Characteristic(const ble_uuid128_t &uuid, ble_gatt_chr_flags flags, Callback callback)
+        : m_flags{flags}, m_callback{callback} {
+        m_uuid.u128 = uuid;
+    }
 
     static int nativeCb(std::uint16_t conHandle,
                         std::uint16_t attrHandle,
