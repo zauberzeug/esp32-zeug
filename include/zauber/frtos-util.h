@@ -39,10 +39,10 @@ class Task {
     using Entrypoint = std::function<void()>;
     static const UBaseType_t DEFAULT_PRIORITY{5};
 
-    ZZ::Util::TextBuffer<16> m_name;
-    TickType_t m_loopDelay;
-    Core::Id m_coreId;
-    Entrypoint m_entrypoint;
+    const ZZ::Util::TextBuffer<16> m_name;
+    const TickType_t m_loopDelay;
+    const Core::Id m_coreId;
+    const Entrypoint m_entrypoint;
 
     TaskHandle_t m_task{nullptr};
 
