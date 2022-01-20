@@ -78,7 +78,7 @@ constexpr auto operator"" _uuid16(const char *str, std::size_t len) {
 
     uint8_t valBuf[2]{};
     ZZ::Ble::Uuid::parse(std::string_view{str, len}, valBuf, 2);
-    result.value = valBuf[0] << 8 | valBuf[1];
+    result.value = valBuf[1] << 8 | valBuf[0];
 
     return result;
 }
@@ -91,7 +91,7 @@ constexpr auto operator"" _uuid32(const char *str, std::size_t len) {
 
     uint8_t valBuf[4]{};
     ZZ::Ble::Uuid::parse(std::string_view{str, len}, valBuf, 4);
-    result.value = valBuf[0] << 24 | valBuf[1] << 16 | valBuf[2] << 8 | valBuf[3];
+    result.value = valBuf[3] << 24 | valBuf[2] << 16 | valBuf[1] << 8 | valBuf[0];
 
     return result;
 }
