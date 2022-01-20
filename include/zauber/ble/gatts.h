@@ -65,7 +65,7 @@ template <std::size_t N>
 struct Service {
     const std::uint8_t m_type{BLE_GATT_SVC_TYPE_PRIMARY};
     const ble_uuid128_t m_uuid;
-    Characteristic m_charas[N];
+    std::array<Characteristic, N> m_charas;
     std::array<ble_gatt_chr_def, N + 1> m_charaDefs;
 
     constexpr Service(const ble_uuid128_t &uuid, const Characteristic (&list)[N])
