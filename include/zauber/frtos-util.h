@@ -54,7 +54,7 @@ class Task {
         auto &self{*static_cast<Task *>(data)};
         auto id{xPortGetCoreID()};
 
-        ESP_LOGI("Task", "[%.*s] executing on core [%s]", self.m_name.len(), self.m_name.ptr(), Core::idToStr(id));
+        ESP_LOGI("Task", "[%.*s] executing on core [%s]", self.m_name.length(), self.m_name.data(), Core::idToStr(id));
 
         while (true) {
             self.m_entrypoint();
@@ -82,7 +82,7 @@ public:
     auto run() -> void {
         assert(m_task == nullptr);
         m_task = xTaskCreateStaticPinnedToCore(nativeFunction,
-                                               m_name.ptr(),
+                                               m_name.data(),
                                                StackSize,
                                                this,
                                                DEFAULT_PRIORITY,

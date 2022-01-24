@@ -30,20 +30,20 @@ public:
         m_len = cpyCount;
     }
 
-    auto ptr() const -> const char * {
+    auto data() const -> const char * {
         return m_buf.data();
     }
 
-    auto len() const -> std::size_t {
+    auto length() const -> std::size_t {
         return m_len;
     }
 
     operator std::string_view() {
-        return std::string_view{ptr(), len()};
+        return std::string_view{data(), length()};
     }
 
     operator std::string() {
-        return std::string{ptr(), len()};
+        return std::string{data(), length()};
     }
 
     auto printf(const char *format, ...) -> void {
