@@ -11,6 +11,11 @@
 
 namespace ZZ::Util {
 
+template <typename T>
+auto minimum(const T &a, const T &b) -> const T & {
+    return (a < b) ? a : b;
+}
+
 template <std::size_t Size>
 class TextBuffer {
     std::array<char, Size> m_buf;
@@ -23,7 +28,7 @@ public:
     }
 
     constexpr TextBuffer(const std::string_view &sv) {
-        std::size_t cpyCount = std::min(sv.size(), Size - 1);
+        std::size_t cpyCount = minimum(sv.size(), Size - 1);
         std::memcpy(m_buf.data(), sv.data(), cpyCount);
         m_buf[cpyCount] = '\0';
 
