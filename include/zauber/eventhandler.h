@@ -6,6 +6,8 @@
 #include <esp_err.h>
 #include <esp_event.h>
 
+#include "zauber/util.h"
+
 namespace ZZ {
 
 class EventHandler {
@@ -23,6 +25,16 @@ public:
                                                    m_eventId,
                                                    nativeHandler,
                                                    this, &m_instance);
+    }
+
+    auto postMainLoop(int32_t eventId,
+                      const Util::ByteBufferView &data = Util::ByteBufferView{},
+                      TickType_t ticksToWait = portMAX_DELAY) -> esp_err_t {
+        /* esp_event_post taking void* instead of const void* for event_data
+         * has to be a defect */
+        return esp_event_post(m_eventBase, eventId,
+                              const_cast<void *>(reinterpret_cast<const void *>(data.data())),
+                              data.size(), ticksToWait);
     }
 
 private:
