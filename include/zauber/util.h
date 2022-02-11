@@ -11,6 +11,8 @@
 
 namespace ZZ::Util {
 
+using ByteBufferView = std::basic_string_view<std::byte>;
+
 template <typename T>
 auto minimum(const T &a, const T &b) -> const T & {
     return (a < b) ? a : b;

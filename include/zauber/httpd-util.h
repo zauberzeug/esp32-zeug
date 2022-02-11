@@ -14,10 +14,10 @@
 #include <esp_http_client.h>
 #include <esp_http_server.h>
 
+#include "zauber/util.h"
+
 namespace ZZ::HttpdUtil {
 /* Server helpers */
-
-using ByteBufferView = std::basic_string_view<std::byte>;
 
 /* Wrapper class results in identical code being generated: https://godbolt.org/z/MYYxfTTfv */
 struct IncomingRequest {
@@ -39,11 +39,11 @@ struct IncomingRequest {
         return httpd_resp_set_hdr(m_req, field.c_str(), value.c_str());
     }
 
-    auto sendWholeBuffer(const ByteBufferView &buffer) -> esp_err_t {
+    auto sendWholeBuffer(const Util::ByteBufferView &buffer) -> esp_err_t {
         return httpd_resp_send(m_req, reinterpret_cast<const char *>(buffer.data()), buffer.size());
     }
 
-    auto sendBufferChunk(const ByteBufferView &buffer) -> esp_err_t {
+    auto sendBufferChunk(const Util::ByteBufferView &buffer) -> esp_err_t {
         return httpd_resp_send_chunk(m_req, reinterpret_cast<const char *>(buffer.data()), buffer.size());
     }
 
