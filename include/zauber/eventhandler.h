@@ -1,5 +1,11 @@
-#ifndef EVENTHANDLER_H
-#define EVENTHANDLER_H
+/*
+ * SPDX-FileCopyrightText: 2021-2022 Zauberzeug GmbH
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef ZZ_EVENTHANDLER_H
+#define ZZ_EVENTHANDLER_H
 
 #include <functional>
 
@@ -52,4 +58,4 @@ private:
 
 } // namespace ZZ
 
-#endif // EVENTHANDLER_H
+#endif // ZZ_EVENTHANDLER_H

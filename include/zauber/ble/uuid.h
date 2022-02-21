@@ -1,5 +1,11 @@
-#ifndef ZZBLEUUID_H
-#define ZZBLEUUID_H
+/*
+ * SPDX-FileCopyrightText: 2021-2022 Zauberzeug GmbH
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef ZZ_BLE_UUID_H
+#define ZZ_BLE_UUID_H
 
 #include <sdkconfig.h>
 #ifndef CONFIG_BT_NIMBLE_ENABLED
@@ -109,4 +115,4 @@ constexpr auto operator"" _uuid128(const char *str, std::size_t len) {
 
 #endif
 
-#endif // ZZBLEUUID_H
+#endif // ZZ_BLE_UUID_H

@@ -1,5 +1,11 @@
-#ifndef ZZ_NVSCACHE_H
-#define ZZ_NVSCACHE_H
+/*
+ * SPDX-FileCopyrightText: 2021-2022 Zauberzeug GmbH
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef ZZ_NVS_CACHE_H
+#define ZZ_NVS_CACHE_H
 
 #include <cstdint>
 #include <map>
@@ -97,4 +103,4 @@ private:
 
 } // namespace ZZ
 
-#endif // ZZ_NVSCACHE_H
+#endif // ZZ_NVS_CACHE_H

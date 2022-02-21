@@ -1,5 +1,11 @@
-#ifndef ZZ_HTTPDUTIL_H
-#define ZZ_HTTPDUTIL_H
+/*
+ * SPDX-FileCopyrightText: 2021-2022 Zauberzeug GmbH
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef ZZ_HTTPD_UTIL_H
+#define ZZ_HTTPD_UTIL_H
 
 #include <cassert>
 #include <cstddef>
@@ -172,4 +178,4 @@ struct OutgoingRequest {
 };
 } // namespace ZZ::HttpdUtil
 
-#endif // ZZ_HTTPDUTIL_H
+#endif // ZZ_HTTPD_UTIL_H

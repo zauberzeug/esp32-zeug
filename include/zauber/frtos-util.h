@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2021-2022 Zauberzeug GmbH
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
 #ifndef ZZ_FRTOS_UTIL_H
 #define ZZ_FRTOS_UTIL_H
 

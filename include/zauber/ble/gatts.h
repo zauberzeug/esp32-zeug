@@ -1,5 +1,11 @@
-#ifndef ZZBLEGATTS_H
-#define ZZBLEGATTS_H
+/*
+ * SPDX-FileCopyrightText: 2021-2022 Zauberzeug GmbH
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#ifndef ZZ_BLE_GATTS_H
+#define ZZ_BLE_GATTS_H
 
 #include <sdkconfig.h>
 #ifndef CONFIG_BT_NIMBLE_ENABLED
@@ -94,4 +100,4 @@ struct Service {
 
 #endif
 
-#endif // ZZBLEGATTS_H
+#endif // ZZ_BLE_GATTS_H
