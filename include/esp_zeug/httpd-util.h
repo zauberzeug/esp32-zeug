@@ -20,7 +20,7 @@
 #include <esp_http_client.h>
 #include <esp_http_server.h>
 
-#include "zauber/util.h"
+#include "esp_zeug/util.h"
 
 namespace ZZ::HttpdUtil {
 /* Server helpers */

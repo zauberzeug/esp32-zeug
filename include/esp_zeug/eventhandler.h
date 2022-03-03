@@ -12,7 +12,7 @@
 #include <esp_err.h>
 #include <esp_event.h>
 
-#include "zauber/util.h"
+#include "esp_zeug/util.h"
 
 namespace ZZ {
 

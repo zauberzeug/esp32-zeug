@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "zauber/httpd-util.h"
+#include "esp_zeug/httpd-util.h"
 
 namespace ZZ::HttpdUtil {
 HtmlTextType htmlTextType{};

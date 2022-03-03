@@ -1,12 +1,12 @@
 idf_component_register(
 SRCS
-    "include/zauber/nvs-cache.h" "src/nvs-cache.cpp"
-    "include/zauber/httpd-util.h" "src/httpd-util.cpp"
-    "include/zauber/eventhandler.h"
-    "include/zauber/frtos-util.h"
-    "include/zauber/util.h"
-    "include/zauber/ble/uuid.h"
-    "include/zauber/ble/gatts.h"
+    "include/esp_zeug/nvs-cache.h" "src/nvs-cache.cpp"
+    "include/esp_zeug/httpd-util.h" "src/httpd-util.cpp"
+    "include/esp_zeug/eventhandler.h"
+    "include/esp_zeug/frtos-util.h"
+    "include/esp_zeug/util.h"
+    "include/esp_zeug/ble/uuid.h"
+    "include/esp_zeug/ble/gatts.h"
 INCLUDE_DIRS
     "include"
 REQUIRES

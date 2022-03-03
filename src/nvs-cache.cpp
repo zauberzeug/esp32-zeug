@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-#include "zauber/nvs-cache.h"
+#include "esp_zeug/nvs-cache.h"
 
 #include <cassert>
 #include <map>
