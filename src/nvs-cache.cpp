@@ -14,7 +14,7 @@
 
 namespace ZZ {
 
-static const char *TAG{"NvsCache"};
+static const char *TAG{"esp_zeug/NvsCache"};
 const nvs_handle_t NvsCache::NULL_HANDLE{0};
 
 NvsCache::NvsCache(const std::string_view &nspace)
@@ -94,19 +94,19 @@ auto NvsCache::getTyped(const char *key, ZZ::NvsType::Type type) -> const Value 
     const CacheMap::const_iterator iter{m_cacheMap.find(key)};
 
     if (iter == m_cacheMap.cend()) {
-        ESP_LOGI(TAG, "miss: %s", key);
+        ESP_LOGD(TAG, "miss: %s", key);
         /* Cache miss */
         Value val{};
         esp_err_t ec{queryInternal(m_handle, key, val, type)};
 
         if (ec != ESP_OK) {
-            ESP_LOGI(TAG, "Error reading NVS: %s", esp_err_to_name(ec));
+            ESP_LOGD(TAG, "Error reading NVS: %s", esp_err_to_name(ec));
         }
 
         auto insPair{m_cacheMap.emplace(key, std::move(val))};
         return insPair.first->second;
     } else {
-        ESP_LOGI(TAG, "hit: %s", key);
+        ESP_LOGD(TAG, "hit: %s", key);
         return iter->second;
     }
 }

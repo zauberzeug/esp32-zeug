@@ -19,6 +19,7 @@
 #include <esp_err.h>
 #include <esp_http_client.h>
 #include <esp_http_server.h>
+#include <esp_log.h>
 
 #include "esp_zeug/util.h"
 
@@ -121,6 +122,7 @@ class EndpointHandler {
         auto &self = *static_cast<const EndpointHandler*>(req->user_ctx);
         IncomingRequest wrappedReq{req};
 
+        ESP_LOGD("esp_zeug/HttpdUtil", "Invoking endpoint handler [%s]", self.m_endpoint.c_str());
         self.m_type.apply(wrappedReq);
         return self.m_callback(wrappedReq);
     }

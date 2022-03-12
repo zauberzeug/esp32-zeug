@@ -60,7 +60,7 @@ class Task {
         auto &self{*static_cast<Task *>(data)};
         auto id{xPortGetCoreID()};
 
-        ESP_LOGI("Task", "[%.*s] executing on core [%s]", self.m_name.length(), self.m_name.data(), Core::idToStr(id));
+        ESP_LOGI("esp_zeug/FrtosUtil", "Task [%.*s] executing on core [%s]", self.m_name.length(), self.m_name.data(), Core::idToStr(id));
 
         while (true) {
             self.m_entrypoint();
