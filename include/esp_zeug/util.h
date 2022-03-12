@@ -8,6 +8,7 @@
 #define ZZ_UTIL_H
 
 #include <array>
+#include <cassert>
 #include <cstdarg>
 #include <cstddef>
 #include <cstdio>
@@ -67,6 +68,37 @@ public:
         va_end(args);
     }
 };
+
+constexpr auto isHex(char c) -> std::uint8_t {
+    if (c >= '0' && c <= '9') {
+        return true;
+    } else if (c >= 'a' && c <= 'f') {
+        return true;
+    } else if (c >= 'A' && c <= 'F') {
+        return true;
+    }
+
+    return false;
+}
+
+constexpr auto hexVal(char c) -> std::uint8_t {
+    assert(isHex(c));
+
+    if (c >= '0' && c <= '9') {
+        return c - '0';
+    } else if (c >= 'a' && c <= 'f') {
+        return 0xA + (c - 'a');
+    } else if (c >= 'A' && c <= 'F') {
+        return 0xA + (c - 'A');
+    }
+
+    /* UB from hereon out */
+    return 0xFF;
+}
+
+constexpr auto charPairToByte(char high, char low) -> std::uint8_t {
+    return (hexVal(high) << 4) | (hexVal(low) << 0);
+}
 
 } // namespace ZZ::Util
 
