@@ -115,7 +115,14 @@ auto NvsCache::set(const char *key, Value &&value) -> void {
     assert(m_handle != NULL_HANDLE);
 
     storeInternal(m_handle, key, value);
-    m_cacheMap.emplace(key, value);
+
+    auto iter = m_cacheMap.find(key);
+
+    if (iter == m_cacheMap.end()) {
+        m_cacheMap.emplace(key, value);
+    } else {
+        iter->second = value;
+    }
 }
 
 auto NvsCache::commit() const -> void {
