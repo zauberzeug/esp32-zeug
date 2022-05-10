@@ -27,22 +27,38 @@ struct Characteristic {
 
     ble_uuid_any_t m_uuid;
     ble_gatt_chr_flags m_flags;
+    std::uint16_t *m_valueHandle;
     Callback m_callback;
 
     Characteristic() : m_flags{0}, m_callback{} {}
 
     Characteristic(const ble_uuid16_t &uuid, ble_gatt_chr_flags flags, Callback callback)
-        : m_flags{flags}, m_callback{callback} {
+        : m_flags{flags}, m_valueHandle{nullptr}, m_callback{callback} {
         m_uuid.u16 = uuid;
     }
 
     Characteristic(const ble_uuid32_t &uuid, ble_gatt_chr_flags flags, Callback callback)
-        : m_flags{flags}, m_callback{callback} {
+        : m_flags{flags}, m_valueHandle{nullptr}, m_callback{callback} {
         m_uuid.u32 = uuid;
     }
 
     Characteristic(const ble_uuid128_t &uuid, ble_gatt_chr_flags flags, Callback callback)
-        : m_flags{flags}, m_callback{callback} {
+        : m_flags{flags}, m_valueHandle{nullptr}, m_callback{callback} {
+        m_uuid.u128 = uuid;
+    }
+
+    Characteristic(const ble_uuid16_t &uuid, ble_gatt_chr_flags flags, std::uint16_t *valueHandle, Callback callback)
+        : m_flags{flags}, m_valueHandle{valueHandle}, m_callback{callback} {
+        m_uuid.u16 = uuid;
+    }
+
+    Characteristic(const ble_uuid32_t &uuid, ble_gatt_chr_flags flags, std::uint16_t *valueHandle, Callback callback)
+        : m_flags{flags}, m_valueHandle{valueHandle}, m_callback{callback} {
+        m_uuid.u32 = uuid;
+    }
+
+    Characteristic(const ble_uuid128_t &uuid, ble_gatt_chr_flags flags, std::uint16_t *valueHandle, Callback callback)
+        : m_flags{flags}, m_valueHandle{valueHandle}, m_callback{callback} {
         m_uuid.u128 = uuid;
     }
 
@@ -62,7 +78,7 @@ struct Characteristic {
             nullptr,
             m_flags,
             0,
-            nullptr,
+            m_valueHandle,
         };
     }
 };
