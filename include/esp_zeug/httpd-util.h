@@ -149,6 +149,7 @@ public:
 
 using GetHandler = EndpointHandler<HTTP_GET>;
 using PostHandler = EndpointHandler<HTTP_POST>;
+using PutHandler = EndpointHandler<HTTP_PUT>;
 
 /* Client helpers */
 struct OutgoingRequest {
