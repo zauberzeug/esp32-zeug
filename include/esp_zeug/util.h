@@ -11,6 +11,7 @@
 #include <cassert>
 #include <cstdarg>
 #include <cstddef>
+#include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <string>
@@ -69,7 +70,7 @@ public:
     }
 };
 
-constexpr auto isHex(char c) -> std::uint8_t {
+constexpr auto isHex(char c) -> uint8_t {
     if (c >= '0' && c <= '9') {
         return true;
     } else if (c >= 'a' && c <= 'f') {
@@ -81,7 +82,7 @@ constexpr auto isHex(char c) -> std::uint8_t {
     return false;
 }
 
-constexpr auto hexVal(char c) -> std::uint8_t {
+constexpr auto hexVal(char c) -> uint8_t {
     assert(isHex(c));
 
     if (c >= '0' && c <= '9') {
@@ -96,7 +97,7 @@ constexpr auto hexVal(char c) -> std::uint8_t {
     return 0xFF;
 }
 
-constexpr auto charPairToByte(char high, char low) -> std::uint8_t {
+constexpr auto charPairToByte(char high, char low) -> uint8_t {
     return (hexVal(high) << 4) | (hexVal(low) << 0);
 }
 
