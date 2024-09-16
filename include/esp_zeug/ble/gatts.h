@@ -79,6 +79,7 @@ struct Characteristic {
             m_flags,
             0,
             m_valueHandle,
+            nullptr,
         };
     }
 };
